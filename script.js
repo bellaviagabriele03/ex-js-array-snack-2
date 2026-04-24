@@ -148,10 +148,15 @@ async function getBooks(arrayId) {
     const promises = booksIds.map((id) => fetchJson(`http://localhost:3333/books/${id} `))
     const result = await Promise.all(promises)
     return result
-
-
-
 }
 //array degli id dei libri 
 const booksIds = [2, 13, 7, 21, 19];
-getBooks(booksIds).then(resp => console.log("Ecco i libri che mi hai chiesto:", resp))
+
+getBooks(booksIds).then(resp => {
+    console.log("Ecco i libri che mi hai chiesto:", resp)
+})
+
+
+
+
+

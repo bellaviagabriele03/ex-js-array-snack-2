@@ -129,3 +129,29 @@ const etaMedia = agesSum / authors.length
 console.log("eta media degli autori:", etaMedia.toFixed(0), "anni");
 
 
+// snack 5 bonus
+
+// Usando la l'API http://localhost:3333/books/{id} usa la combinazione di .map() e Promise.all(), per creare una funzione (getBooks) che a partire da un array di id (ids), ritorna una promise che risolve un array di libri (books).
+// Testala con l’array [2, 13, 7, 21, 19] .
+
+
+
+
+async function fetchJson(url) {
+    const resp = await fetch(url)
+    const obj = await resp.json();
+    return obj
+}
+
+
+async function getBooks(arrayId) {
+    const promises = booksIds.map((id) => fetchJson(`http://localhost:3333/books/${id} `))
+    const result = await Promise.all(promises)
+    return result
+
+
+
+}
+//array degli id dei libri 
+const booksIds = [2, 13, 7, 21, 19];
+getBooks(booksIds).then(resp => console.log("Ecco i libri che mi hai chiesto:", resp))
